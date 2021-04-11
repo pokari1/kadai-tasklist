@@ -1,7 +1,5 @@
 package models;
 
-import java.security.Timestamp;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,9 +12,14 @@ import javax.persistence.Table;
 @Entity
 @NamedQueries({
     @NamedQuery(
-        name = "getAllMessages",
+        name = "getAllTasks",
         query = "SELECT m FROM Task AS m ORDER BY m.id DESC"
-    )
+        ),
+    @NamedQuery(
+         name = "getTasksCount",
+         query = "SELECT COUNT(m) FROM Task AS m"
+                        )
+
 })
 @Table(name="tasks")
 public class Task {
@@ -33,10 +36,10 @@ public class Task {
     private String content;
 
     @Column(name = "created_at", nullable = false)
-    private Timestamp created_at;
+    private java.sql.Timestamp created_at;
 
     @Column(name = "updated_at", nullable = false)
-    private Timestamp updated_at;
+    private java.sql.Timestamp updated_at;
 
     public Integer getId() {
         return id;
@@ -62,20 +65,20 @@ public class Task {
         this.content = content;
     }
 
-    public Timestamp getCreated_at() {
+    public java.sql.Timestamp getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
+    public void setCreated_at(java.sql.Timestamp currentTime) {
+        this.created_at = currentTime;
     }
 
-    public Timestamp getUpdated_at() {
+    public java.sql.Timestamp getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(Timestamp updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdated_at(java.sql.Timestamp currentTime) {
+        this.updated_at = currentTime;
     }
 }
 
